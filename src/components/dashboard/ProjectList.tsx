@@ -4,6 +4,7 @@ import { useNavigation } from '../../hooks/useNavigation';
 import { useProjects } from '../../hooks/useProject';
 import type { ProjectStatus } from '../../types/project.types';
 import { PROJECT_STATUS_FILTER_OPTIONS, PROJECT_STATUS_LABELS } from '../../utils/constants';
+import { HIERARCHY_CARD_GRID } from '../../utils/layout';
 import { AssetCard } from '../common/AssetCard';
 import { FilterBar } from '../common/FilterBar';
 import { ListPageLayout } from '../common/ListPageLayout';
@@ -49,12 +50,12 @@ export function ProjectList() {
         />
       }
     >
-      <div className="grid gap-6 pb-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className={HIERARCHY_CARD_GRID}>
         {filteredProjects?.map((project, index) => (
           <AssetCard
             key={project.id}
-            image={project.image}
             title={project.name}
+            mapLocation={project.location}
             status={project.status}
             statusLabel={PROJECT_STATUS_LABELS[project.status]}
             isActive={navigation.projectId === project.id}
@@ -86,7 +87,7 @@ export function ProjectList() {
       </div>
 
       {filteredProjects?.length === 0 && (
-        <p className="py-16 text-center text-gray-500">No projects found</p>
+        <p className="py-10 text-center text-gray-500">No projects found</p>
       )}
     </ListPageLayout>
   );

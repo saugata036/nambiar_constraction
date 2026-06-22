@@ -44,17 +44,17 @@ export function Login() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="w-full max-w-md"
+      className="w-full max-w-sm"
     >
-      <div className="overflow-hidden rounded-2xl bg-white shadow-2xl">
-        <div className="bg-gradient-to-r from-primary-400 to-primary-600 px-8 py-8 text-center text-white">
-          <div className="mx-auto mb-2 flex justify-center">
-            <Logo size="hero" className="max-w-[200px]" />
+      <div className="overflow-hidden rounded-xl bg-white shadow-2xl">
+        <div className="bg-gradient-to-r from-primary-400 to-primary-600 px-6 py-5 text-center text-white">
+          <div className="mx-auto mb-1.5 flex justify-center">
+            <Logo size="hero" className="max-w-[160px]" />
           </div>
           <p className="text-sm text-white/80">Construction Management Portal</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 p-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6">
           <div>
             <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
             <div className="relative">

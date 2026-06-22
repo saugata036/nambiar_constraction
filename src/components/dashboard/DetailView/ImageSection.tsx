@@ -61,7 +61,7 @@ export function ImageSection({ level }: ImageSectionProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">Site Images</h3>
@@ -90,7 +90,7 @@ export function ImageSection({ level }: ImageSectionProps) {
       </div>
 
       {allImages.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 py-16 text-center">
+        <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 py-10 text-center">
           <Plane className="mx-auto mb-3 h-10 w-10 text-gray-400" />
           <p className="text-gray-500">No images yet. Schedule a drone flight to capture photos.</p>
         </div>

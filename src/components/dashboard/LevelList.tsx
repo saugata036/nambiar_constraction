@@ -6,6 +6,7 @@ import { AssetCard } from '../common/AssetCard';
 import { FilterBar } from '../common/FilterBar';
 import { ListPageLayout } from '../common/ListPageLayout';
 import { Loader } from '../common/Loader';
+import { HIERARCHY_CARD_GRID } from '../../utils/layout';
 
 export function LevelList() {
   const { navigation, searchQuery, setSearchQuery, updateNavigation } = useNavigation();
@@ -28,11 +29,11 @@ export function LevelList() {
         />
       }
     >
-      <div className="grid gap-6 pb-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className={`${HIERARCHY_CARD_GRID} pb-3`}>
         {filtered?.map((level, index) => (
           <AssetCard
             key={level.id}
-            image={level.images.captured[0]?.url}
+            levelOrder={level.order}
             title={level.name}
             status={level.status}
             statusLabel={STATUS_LABELS[level.status]}

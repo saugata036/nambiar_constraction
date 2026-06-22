@@ -5,14 +5,16 @@
 @layer base {
   html {
     height: 100%;
+    overflow: hidden;
   }
 
   body {
-    @apply h-full bg-gray-50 font-sans text-gray-900 antialiased;
+    @apply h-full overflow-hidden bg-gray-50 font-sans text-gray-900 antialiased;
   }
 
   #root {
     height: 100%;
+    overflow: hidden;
   }
 }
 

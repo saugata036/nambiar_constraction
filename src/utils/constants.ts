@@ -1,5 +1,6 @@
 import type { Level, LevelStatus, ONPType, Phase, Project, Tower } from '../types/project.types';
 import type { User } from '../types/auth.types';
+import { getAutocadFloorPlanImage } from './autocad';
 
 export const AUTH_TOKEN_KEY = 'nambiar_auth_token';
 export const AUTH_USER_KEY = 'nambiar_auth_user';
@@ -20,18 +21,14 @@ export const DRONE_FLIGHT_DURATION_MS = 5000;
 
 export const MOCK_PASSWORD = 'password123';
 
-// Construction & building imagery (Unsplash)
+// Construction site imagery only (Unsplash — verified URLs)
 export const BUILDING_IMAGES = {
-  projects: [
-    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-  ],
   construction: [
-    'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
-    'https://images.unsplash.com/photo-1590644365617-42c4b3aec816?w=800&q=80',
-    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80',
-    'https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80',
+    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80', // cranes & site aerial
+    'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80', // workers on site
+    'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80', // excavator on construction site
+    'https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80', // site with hard hats
+    'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80', // active construction zone
   ],
   drone: [
     'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
@@ -77,11 +74,10 @@ function createLevel(
     order: levelIdx + 1,
     images: {
       autocadDrawings: Array.from({ length: 2 + (levelIdx % 2) }, (_, i) => {
-        const bpIdx = (projectIdx + phaseIdx + towerIdx + levelIdx + i) % BUILDING_IMAGES.blueprint.length;
         const fileName = `L${levelIdx + 1}-${AUTOCAD_FILES[i % AUTOCAD_FILES.length]}`;
         return {
           id: `${id}-cad-${i}`,
-          url: BUILDING_IMAGES.blueprint[bpIdx],
+          url: getAutocadFloorPlanImage(i),
           fileName,
           label: AUTOCAD_LABELS[i % AUTOCAD_LABELS.length],
           fileType: fileName.endsWith('.dxf') ? ('dxf' as const) : ('dwg' as const),
@@ -157,13 +153,12 @@ function createProject(idx: number, data: {
   description: string;
   location: string;
   status: 'planning' | 'under_construction' | 'completed';
-  imageIndex: number;
 }): Project {
   return {
     id: `project-${idx}`,
     name: data.name,
     description: data.description,
-    image: BUILDING_IMAGES.projects[data.imageIndex % BUILDING_IMAGES.projects.length],
+    image: undefined,
     location: data.location,
     status: data.status,
     createdAt: new Date(Date.now() - (idx + 1) * 30 * 86400000),
@@ -172,12 +167,9 @@ function createProject(idx: number, data: {
 }
 
 const PROJECTS_DATA = [
-  { name: 'Skyline Residences', description: 'Premium residential development with 3 towers', location: 'Mumbai', status: 'under_construction' as const, imageIndex: 0 },
-  { name: 'Harbor View Complex', description: 'Mixed-use waterfront commercial and residential project', location: 'Chennai', status: 'under_construction' as const, imageIndex: 1 },
-  { name: 'Greenfield Towers', description: 'Sustainable eco-friendly tower complex', location: 'Bangalore', status: 'planning' as const, imageIndex: 2 },
-  { name: 'Metro Heights', description: 'Urban high-rise with retail and office spaces', location: 'Delhi', status: 'planning' as const, imageIndex: 0 },
-  { name: 'Lakefront Plaza', description: 'Completed luxury residential township', location: 'Pune', status: 'completed' as const, imageIndex: 1 },
-  { name: 'Sunrise Enclave', description: 'Completed gated community with amenities', location: 'Hyderabad', status: 'completed' as const, imageIndex: 2 },
+  { name: 'Greenfield Towers', description: 'Sustainable eco-friendly tower complex', location: 'Bangalore', status: 'planning' as const },
+  { name: 'Skyline Residences', description: 'Premium residential development with 3 towers', location: 'Mumbai', status: 'under_construction' as const },
+  { name: 'Lakefront Plaza', description: 'Completed luxury residential township', location: 'Pune', status: 'completed' as const },
 ];
 
 export const MOCK_PROJECTS: Project[] = PROJECTS_DATA.map((data, i) => createProject(i, data));

@@ -145,7 +145,7 @@ export function ScheduleSection({ level, onPhotosCaptured }: ScheduleSectionProp
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card className="border-primary-200 bg-primary-50/50">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -225,7 +225,7 @@ export function ScheduleSection({ level, onPhotosCaptured }: ScheduleSectionProp
           <p className="mb-4 text-sm text-gray-500">
             Plan a one-time aerial survey outside the automatic {intervalHours}-hour schedule
           </p>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             <div>
               <Calendar
                 onChange={(date) => setSelectedDate(date as Date)}

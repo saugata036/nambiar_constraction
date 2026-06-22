@@ -42,7 +42,7 @@ export function StatusSection({ level }: StatusSectionProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card>
         <div className="mb-4 flex items-center justify-between">
           <h3 className="font-semibold text-gray-900 dark:text-white">Current Status</h3>

@@ -9,9 +9,9 @@ const sizeClasses = {
   sm: 'h-6 w-6',
   md: 'h-8 w-8',
   lg: 'h-10 w-10',
-  xl: 'h-12 w-auto max-w-[160px]',
-  hero: 'h-16 w-auto max-w-[220px]',
-  sidebar: 'h-auto w-full max-w-[200px] max-h-[72px]',
+  xl: 'h-10 w-auto max-w-[140px]',
+  hero: 'h-12 w-auto max-w-[180px]',
+  sidebar: 'h-auto w-full max-w-[160px] max-h-[56px]',
 };
 
 export function Logo({ size = 'md', className = '' }: LogoProps) {
@@ -19,7 +19,7 @@ export function Logo({ size = 'md', className = '' }: LogoProps) {
     <img
       src={logoIcon}
       alt="Nambiar"
-      className={`object-contain ${sizeClasses[size]} ${className}`}
+      className={`max-w-full object-contain ${sizeClasses[size]} ${className}`}
     />
   );
 }

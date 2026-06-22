@@ -141,7 +141,7 @@ export function AutoCADSection({ level }: AutoCADSectionProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">AutoCAD Drawings</h3>
@@ -192,19 +192,11 @@ export function AutoCADSection({ level }: AutoCADSectionProps) {
             className="cursor-pointer overflow-hidden rounded-lg border border-gray-200"
             onClick={() => setSelectedDrawing(activeDrawing)}
           >
-            <div className="relative bg-[#1a2332]">
-              <div
-                className="absolute inset-0 opacity-20"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)',
-                  backgroundSize: '20px 20px',
-                }}
-              />
+            <div className="relative bg-black">
               <img
                 src={activeDrawing.url}
                 alt={activeDrawing.label}
-                className="relative mx-auto h-72 w-full object-contain p-4"
+                className="relative mx-auto h-72 w-full object-contain p-2"
               />
             </div>
           </div>
@@ -227,17 +219,11 @@ export function AutoCADSection({ level }: AutoCADSectionProps) {
                   : 'border-gray-200'
               }`}
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-black">
                 <img
                   src={drawing.url}
                   alt={drawing.label}
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-[#1a2332]/40" />
-                <img
-                  src={drawing.url}
-                  alt={drawing.label}
-                  className="absolute inset-0 h-full w-full object-contain p-2"
+                  className="h-full w-full object-contain p-1"
                 />
                 <span className="absolute left-2 top-2 rounded bg-black/70 px-2 py-0.5 text-[10px] font-medium uppercase text-primary-300">
                   {drawing.fileType}
@@ -328,7 +314,7 @@ export function AutoCADSection({ level }: AutoCADSectionProps) {
       >
         {selectedDrawing && (
           <div>
-            <div className="rounded-lg bg-[#1a2332] p-2">
+            <div className="rounded-lg bg-black p-2">
               <img
                 src={selectedDrawing.url}
                 alt={selectedDrawing.label}

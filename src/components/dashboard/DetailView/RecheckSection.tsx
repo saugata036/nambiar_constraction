@@ -30,7 +30,7 @@ export function RecheckSection({ level }: RecheckSectionProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Card>
         <div className="mb-6 flex items-center justify-between">
           <div>

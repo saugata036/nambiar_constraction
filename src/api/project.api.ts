@@ -5,6 +5,7 @@ import {
   DRONE_FLIGHT_DURATION_MS,
   MOCK_PROJECTS,
 } from '../utils/constants';
+import { getAutocadFloorPlanImage } from '../utils/autocad';
 import { delay } from './client';
 
 let projectsStore = structuredClone(MOCK_PROJECTS);
@@ -147,10 +148,7 @@ export const projectApi = {
     }
 
     const fileType = lowerName.endsWith('.dxf') ? 'dxf' : 'dwg';
-    const previewUrl =
-      BUILDING_IMAGES.blueprint[
-        level.images.autocadDrawings.length % BUILDING_IMAGES.blueprint.length
-      ];
+    const previewUrl = getAutocadFloorPlanImage(level.images.autocadDrawings.length);
 
     level.images.autocadDrawings.push({
       id: `cad-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
